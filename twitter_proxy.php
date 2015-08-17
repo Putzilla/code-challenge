@@ -27,15 +27,14 @@ class TwitterProxy {
 	 *	@param	string	$oauth_access_token_secret	OAuth Access Token Secret	('Access token secret' on https://apps.twitter.com)
 	 *	@param	string	$consumer_key				Consumer key				('API key' on https://apps.twitter.com)
 	 *	@param	string	$consumer_secret			Consumer secret				('API secret' on https://apps.twitter.com)
-	 *	@param	string	$user_id					User id (http://gettwitterid.com/)
-	 *	@param	string	$screen_name				Twitter handle
-	 *	@param	string	$count						The number of tweets to pull out
+	 *	@param	string	$location_id					User id (http://gettwitterid.com/)
+	 *	@param	string	$exclude				Twitter handle
 	 */
-	public function __construct($oauth_access_token, $oauth_access_token_secret, $consumer_key, $consumer_secret, $user_id, $screen_name, $count = 5) {
+	public function __construct($oauth_access_token, $oauth_access_token_secret, $consumer_key, $consumer_secret, $location_id, $exclude) {
 
-		$this->config = array_merge($this->config, compact('oauth_access_token', 'oauth_access_token_secret', 'consumer_key', 'consumer_secret', 'user_id', 'screen_name', 'count'));
+		$this->config = array_merge($this->config, compact('oauth_access_token', 'oauth_access_token_secret', 'consumer_key', 'consumer_secret', 'location_id', 'exclude'));
 
-		$this->whitelist['statuses/user_timeline.json?user_id=' . $this->config['user_id'] . '&screen_name=' . $this->config['screen_name'] . '&count=' . $this->config['count']] = true;
+		$this->whitelist['trends/place.json?id=' . $this->config['location_id'] . '&exclude=' . $this->config['exclude']] = true;
 	}
 
 	private function buildBaseString($baseURI, $method, $params) {
