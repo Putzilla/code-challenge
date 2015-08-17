@@ -3,6 +3,7 @@ $(function(){
 	$.ajax({
 		url: 'get_tweets.php',
 		type: 'GET',
+		dataType: 'json',
 		success: function(response) {
 
 			if (typeof response.errors === 'undefined' || response.errors.length < 1) {
