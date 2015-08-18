@@ -30,5 +30,4 @@ $tweets = $twitter_proxy->get($twitter_url);
 
 echo $tweets;
 
-
 ?>

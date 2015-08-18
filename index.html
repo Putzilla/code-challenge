@@ -1,25 +1,124 @@
 <!doctype html>
 <html>
 <head>
-    <title>Code Challenge</title>
+    <title>What's Trending on Twitter?</title>
 
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
+    <style>
+        html {
+            font-size:16px;
+        }
+        body {
+            font-family: 'Lato', Arial, Helvetica, sans-serif;
+            font-weight:300;
+        }
+        h1,h2,h3 {
+            font-weight:300;
+        }
+        h1 {
+            font-size:3rem;
+        }
+        h2 {
+            font-size:2rem;
+        }
+        h3 {
+            font-size:1.5rem;
+        }
+        p {
+            font-size:0.9rem;
+            line-height:1.5em;
+        }
+
+        .text-italic {
+            font-style:italic;
+        }
+
+        #list-container {
+            margin-top:40px;
+            margin-bottom:40px;
+        }
+        .youtube-result {
+            margin-bottom:20px;
+            height:90px;
+            opacity:0;
+            -webkit-animation: fadeIn 1s forwards ease-in;
+            -o-animation: fadeIn 1s forwards ease-in;
+            animation: fadeIn 1s forwards ease-in;
+        }
+        .youtube-result a {
+            display:block;
+            height:90px;
+        }
+        .youtube-result a:hover {
+            background:#eee;
+            text-decoration: none;
+        }
+        .youtube-result p {
+            display:inline;
+        }
+        .youtube-result img {
+            margin-right:10px;
+            float:left;
+        }
+
+
+        #trending-toggle {
+            cursor:pointer;
+        }
+        #trends-container {
+            height:0;
+            overflow:hidden;
+            transition:500ms;
+        }
+        #trends-container.active {
+            height:350px;
+            margin:15px 0;
+        }
+        #trends-container li {
+            font-size:1.5rem;
+        }
+        @-webkit-keyframes fadeIn {
+            0% { opacity: 0 }
+            100% { opacity: 1 }
+        }
+        @-moz-keyframes fadeIn {
+            0% { opacity: 0 }
+            100% { opacity: 1 }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0 }
+            100% { opacity: 1 }
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-    <h1 class="text-center">Code Challenge</h1>
-    <ul id="list-container" class="list-unstyled"></ul>
+    <h1 class="text-center">What's Trending on Twitter?</h1>
+    <p class="text-center">Youtube videos related to the trending topics on twitter</p>
+    <div id="list-container" class="row"></div>
 
-    <ul id="trends-container" class="list-unstyled"></ul>
+    <div class="col-md-8 col-md-offset-2 text-center">
+        <h3 id="trending-toggle">Wait, for real... what's trending?<br>
+            <span class="small text-italic">Click here to see the actual terms that are trending (excluding hashtags)</span>
+        </h3>
+
+        <ul id="trends-container" class="list-unstyled"></ul>
+    </div>
+
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="tweets.js"></script>
-
 <script src="search.js"></script>
 <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).on('click', '#trending-toggle', function(){
+       $('#trends-container').toggleClass('active');
+    });
+</script>
 </body>
 </html>
